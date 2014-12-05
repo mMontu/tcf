@@ -1,7 +1,7 @@
 var colors = [
     {'text': '#808000', 'stroke': '#808000', 'fill': '#fffaba'},
     {'text': '#0087ff', 'stroke': '#0087ff', 'fill': '#c9f1ff'},
-    {'text': '#008080', 'stroke': '#008080', 'fill': '#ff0000'},
+    {'text': '#76dd9e', 'stroke': '#008080', 'fill': '#76dd9e'},
     {'text': '#0000af', 'stroke': '#0000af', 'fill': '#d9deff'},
     {'text': '#5f00af', 'stroke': '#ff3030', 'fill': '#ffc7d4'},
     {'text': '#008000', 'stroke': '#008000', 'fill': '#ccffda'},

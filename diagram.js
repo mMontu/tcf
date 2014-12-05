@@ -70,6 +70,8 @@ function _TCF() {
         for(var i = 0; i < this.connections.length; i++) {
             c = this.connections[i];
 
+            console.log("c.fom.name = " + c.from.name + "; c.to.name = " + c.to.name);
+            console.log("a.name = " + a.name + "; b.name = " + b.name);
             if((c.from.name == a.name && c.to.name == b.name) || (c.from.name == b.name && c.to.name == a.name)) {
                 t = c.text;
                 t = t.split("\\n");
@@ -84,6 +86,7 @@ function _TCF() {
 
                     if(ret < measureText(t[j], this.font_size, null).width) {
                         ret = measureText(t[j], this.font_size, null).width;
+			console.log("width for text " + t[j] + " = " + ret);
                     }
                 }
             }
@@ -102,7 +105,7 @@ function _TCF() {
 
         ret = this.nodes[this.nodes.length-1].x;
 
-        return ret + LEFT_MARGIN + RIGHT_MARGIN;
+        return ret + LEFT_MARGIN + RIGHT_MARGIN + measureText(this.connections[this.connections.length-1].text, this.font_size, null).width + 20;
     }
 
     this.getCanvasHeight = function() {
@@ -116,16 +119,16 @@ function _TCF() {
 
             switch(c.type) {
                 case "box":
-                    ret += 30;
+                    ret += 33;
                 break;
 
                 case "arrow":
-                    ret += 20;
+                    ret += 23;
                 break;
             }
         }
 
-        return ret + 50;
+        return ret + 70;
 
     }
 
@@ -174,7 +177,7 @@ function draw() {
         ctx.beginPath();
         ctx.fillStyle = "#000000";
         ctx.font = TCF.font_size+"px Arial";
-        ctx.fillText(TCF.nodes[i].name, x, 10);
+        ctx.fillText(TCF.nodes[i].name, x, TCF.font_size);
 
         ctx.beginPath();
         ctx.lineWidth = 2;
@@ -233,7 +236,7 @@ function draw() {
                     text = counter + ". " + c.text;
                     ctx.font = TCF.font_size+"px Arial";
                     ctx.fillStyle = c.color.stroke;
-                    ctx.fillText(text, x, y + 10);
+                    ctx.fillText(text, x, y + TCF.font_size);
                     ctx.stroke();
 
                     y += 20; // Arrow space
@@ -246,7 +249,7 @@ function draw() {
             case "box": {
                 x = x0 > x1 ? x1 : x0;
                 x += 10;
-                y -= 15;
+                y -= 5;
                 width = Math.abs(x0-x1); //x0 > x1 ? x0 - x1 : x1 - x0;
                 width -= 20;
 
@@ -272,7 +275,7 @@ function draw() {
                         y += 1;
                         ctx.fillStyle = "#000000";
                         ctx.font = TCF.font_size+"px Arial";
-                        ctx.fillText(strs[j], x, y + 10*(j+1));
+                        ctx.fillText(strs[j], x, y + TCF.font_size*(j+1));
                         ctx.stroke();
                     }
 
