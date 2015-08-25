@@ -318,6 +318,12 @@ function parse(data) {
                 TCF.title = tokens.slice(1).join(' ');
                 continue;
             break;
+
+            case '//':
+            case '/*':
+                // ignore single line comments
+                continue;
+            break;
         }
 
         from = tokens[0]; // Origin
