@@ -231,15 +231,21 @@ function draw() {
 
                 ctx.beginPath();
 
-                    x  = x0 > x1 ? x1 : x0;
-                    x += 12;
-                    text = counter + ". " + c.text;
+                x  = x0 > x1 ? x1 : x0;
+                x += 12;
+                strs = c.text.split("\\n");
+                text = counter + ". "
+                for(var j = 0; j < strs.length; j++) {
+                    text += strs[j];
                     ctx.font = TCF.font_size+"px Arial";
                     ctx.fillStyle = c.color.stroke;
                     ctx.fillText(text, x, y + TCF.font_size);
                     ctx.stroke();
+                    text = "    ";
+                    y += 10;
+                }
 
-                    y += 20; // Arrow space
+                y += 10; // Arrow space
 
                 ctx.closePath();
 
